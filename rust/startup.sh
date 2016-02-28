@@ -1,12 +1,13 @@
 #!/bin/bash
 
-echo "$HOSTNAME starting...";
 
 if [[ -f /configuration/server.config ]]; then
+  echo "Starting from server config";
   ./RustDedicated -batchmode +server.cfg /configuration/server.config;
   exit 0;
 fi
 
+echo "$HOSTNAME starting...";
 ./RustDedicated -batchmode \
  +server.datadir /data \
  +server.hostname $HOSTNAME \
