@@ -12,9 +12,9 @@ ENV MAX_PLAYER 64
 
 WORKDIR /home/steam/game
 COPY ./startup.sh .
-COPY ./configuration/server.config /configuration/server.config
-VOLUME ["/data", "/configuration"]
+COPY ./configuration/server.cfg ./cfg/server.cfg
+VOLUME ["/data", "/home/steam/game/cfg"]
 
-EXPOSE 28015/udp 28016 27015
+EXPOSE 28015/udp 28016 28016/udp 27015
 
 ENTRYPOINT  ./startup.sh

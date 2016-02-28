@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-if [[ -f /configuration/server.config ]]; then
+if [[ -f ./cfg/server.cfg ]]; then
   echo "Starting from server config";
-  ./RustDedicated -batchmode +server.cfg /configuration/server.config;
+  ./RustDedicated -batchmode -load +server.seed $SEED;
   exit 0;
 fi
 
@@ -11,7 +11,6 @@ echo "$HOSTNAME starting...";
 ./RustDedicated -batchmode \
  +server.datadir /data \
  +server.hostname $HOSTNAME \
- +server.identity "rust-server" \
  +server.seed $SEED \
  +server.serverlog 1 \
  +server.netlog 1 \
