@@ -3,8 +3,8 @@
 
 if [[ -f /configuration/server.cfg ]]; then
   echo "Loading settings from server.cfg...";
-  mkdir -p /home/steam/game/server/rust_server/cfg;
-  ln -s /configuration/server.cfg /home/steam/game/server/rust_server/cfg/server.cfg;
+  mkdir -p ./server/rust_server/cfg/;
+  ln -s /configuration/server.cfg ./server/rust_server/cfg/server.cfg;
   ./RustDedicated -batchmode -load +server.identity "rust_server" -logfile "./logfile.txt";
   exit 0;
 fi
