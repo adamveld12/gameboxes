@@ -5,15 +5,18 @@ ENV APPID "258550"
 RUN /home/steam/install.sh
 
 ENV HOSTNAME "Docker"
-EXPOSE 28015 28016
+ENV RCON_PASSWORD "CHANGE_ME"
+ENV SEED 112588
+ENV IDENTITY "rust-server"
+EXPOSE 28015 28016 27015
 
 WORKDIR /home/steam/game
 ENTRYPOINT echo "$HOSTNAME starting..." && \
           ./RustDedicated -batchmode \
            +server.datadir /data \
            +server.hostname $HOSTNAME \
-           +server.identity "rust-server" \
-           +server.seed 112588 \
+           +server.identity $IDENTITY \
+           +server.seed $SEED \
            +server.serverlog 1 \
            +server.netlog 1 \
            +server.saveinternal 300 \
@@ -23,4 +26,4 @@ ENTRYPOINT echo "$HOSTNAME starting..." && \
            +server.port 28015 \
            +rcon.ip 0.0.0.0 \
            +rcon.port 28016 \
-           +rcon.password "CHANGE_ME"
+           +rcon.password "${RCON_PASSWORD}"
