@@ -10,9 +10,13 @@ ENV SEED 112588
 ENV MAX_PLAYER 64
 
 WORKDIR /home/steam/game
+
+RUN mkdir -p /home/steam/game/server/rust_server/cfg/
+
+COPY /configuration/server.cfg /configuration/server.cfg
 COPY ./startup.sh .
 
-VOLUME ["/home/steam/game/server", "/configuration"]
+VOLUME ["/home/steam/game/server/rust_server"]
 
 EXPOSE 28015/udp 28016 28016/udp 27015
 
